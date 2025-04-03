@@ -25,11 +25,14 @@ class Program
 
         while (true)
         {
+            Console.Clear();
             posicaoJogador = Jogador(posicaoJogador);
             posicaoJogador = AplicarEfeitoCasa(posicaoJogador, "Jogador");
 
             if (posicaoJogador >= 30)
             {
+                Console.Clear();
+                tabuleiro(posicaoBot, posicaoJogador);
                 Console.WriteLine("\nParabéns! Você venceu!");
                 break;
             }
@@ -39,11 +42,15 @@ class Program
 
             if (posicaoBot >= 30)
             {
+                Console.Clear();
+                tabuleiro(posicaoBot, posicaoJogador);
                 Console.WriteLine("\nO bot venceu! Tente novamente.");
                 break;
             }
 
             tabuleiro(posicaoBot, posicaoJogador);
+            Console.WriteLine("\nPressione qualquer tecla para continuar...");
+            Console.ReadKey();
         }
     }
 
@@ -51,22 +58,13 @@ class Program
     {
         for (int i = 0; i < 31; i++)
         {
-            if (posicaoBot == i && posicaoJogador == i)
-                Console.Write("(X)");
-            else if (posicaoBot == i)
-                Console.Write("(0-0)");
-            else
-                Console.Write("_");
+            Console.Write(posicaoBot == i ? "(B)" : "_");
         }
 
         Console.WriteLine();
-
         for (int i = 0; i < 31; i++)
         {
-            if (posicaoJogador == i && posicaoBot != i)
-                Console.Write("(uwu)");
-            else if (posicaoBot != i)
-                Console.Write("_");
+            Console.Write(posicaoJogador == i ? "(J)" : "_");
         }
 
         Console.WriteLine("\n");
